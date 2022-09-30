@@ -5,6 +5,10 @@ pipeline {
             args '-v /root/.m2:/root/.m2'
         }
     }
+     environment {
+        DATE = new Date().format('yy.M')
+        TAG = "${DATE}.${BUILD_NUMBER}"
+    }
     options {
         skipStagesAfterUnstable()
     }
@@ -29,5 +33,14 @@ pipeline {
                 sh './jenkins/scripts/deliver.sh' 
             }
         }
+        stage('Docker Build') {
+            steps {
+                script {
+                    docker.build("vivans/sample-build:${TAG}")
+                }
+            }
+        }
+
     }
+    
 }
