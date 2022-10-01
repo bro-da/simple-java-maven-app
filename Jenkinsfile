@@ -51,7 +51,8 @@ pipeline {
         //         }
         //     }
         // }
-    def app     
+    {
+        def app     
            
       stage('Build image') {         
        
@@ -70,5 +71,5 @@ pipeline {
               }    
            }
     }
-    
+    }
 }
