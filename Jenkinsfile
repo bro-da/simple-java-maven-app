@@ -1,10 +1,5 @@
 pipeline {
-    agent {
-        docker {
-            image 'maven:3.8.1-adoptopenjdk-11'
-            args '-v /root/.m2:/root/.m2'
-        }
-    }
+    agent /any
      environment {
         DATE = new Date().format('yy.M')
         TAG = "${DATE}.${BUILD_NUMBER}"
@@ -40,13 +35,21 @@ pipeline {
                 sh './jenkins/scripts/deliver.sh' 
             }
         }
-        stage('Docker Build') {
+        stage('Docker') {
             steps {
                 script {
-                    docker.build("vivans/sample-build:${TAG}")
+                sh 'docker build -t maven-sample .'
+                sh 'docker images'
                 }
+             }
             }
-        }
+        // stage('Docker Build') {
+        //     steps {
+        //         script {
+        //             docker.build("vivans/sample-build:${TAG}")
+        //         }
+        //     }
+        // }
 
     }
     
