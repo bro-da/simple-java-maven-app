@@ -56,7 +56,7 @@ pipeline {
         stage('Push') {
             
 			steps {
-                
+                sh 'docker push vivans/sample-build:${BUILD_NUMBER}'
 				sh 'docker push vivans/sample-build:latest'
 			}
 		}
