@@ -41,7 +41,7 @@ pipeline {
             steps {
                 script {
                 // sh 'docker rmi maven-sample'
-                sh 'docker build -t vivans/sample:$TAG .'
+                sh 'docker build -t vivans/sample .'
                 sh 'docker images'
                 }
              }
