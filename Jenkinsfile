@@ -57,7 +57,7 @@ pipeline {
             
 			steps {
                 
-				sh 'docker push vivans/sample-build:$TAG'
+				sh 'docker push vivans/sample-build:latest'
 			}
 		}
 	}
