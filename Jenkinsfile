@@ -53,8 +53,9 @@ pipeline {
 			}
 		}
         stage('Push') {
-            docker.withRegistry('https://registry.hub.docker.com')
+            
 			steps {
+                docker.withRegistry('https://registry.hub.docker.com')
 				sh 'docker push vivans/sample-build:$TAG'
 			}
 		}
