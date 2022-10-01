@@ -40,7 +40,7 @@ pipeline {
         stage('Docker') {
             steps {
                 script {
-                sh 'docker rmi maven-sample'
+                // sh 'docker rmi maven-sample'
                 sh 'docker build -t maven-sample .'
                 sh 'docker images'
                 }
