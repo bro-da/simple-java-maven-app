@@ -37,21 +37,22 @@ pipeline {
                 sh './jenkins/scripts/deliver.sh' 
             }
         }
-        stage('Docker') {
-            steps {
-                script {
-                // sh 'docker rmi maven-sample'
-                sh 'docker build -t vivans/sample .'
-                sh 'docker images'
-                }
-             }
-            }
+       
             stage('Login') {
 
 			steps {
 				sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
 			}
 		}
+         stage('Docker') {
+            steps {
+                script {
+                // sh 'docker rmi maven-sample'
+                sh 'docker build -t vivans/sample:$TAG .'
+                sh 'docker images'
+                }
+             }
+            }
         stage('Push') {
             
 			steps {
