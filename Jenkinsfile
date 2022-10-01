@@ -1,7 +1,6 @@
 pipeline {
     agent any
     
-    
      environment {
         DATE = new Date().format('yy.M')
         TAG = "${DATE}.${BUILD_NUMBER}"
@@ -9,8 +8,7 @@ pipeline {
     options {
         skipStagesAfterUnstable()
     }
-    node 
-    {def app 
+   
     stages {
          stage('Cloning Git') {
       steps {
@@ -38,14 +36,14 @@ pipeline {
                 sh './jenkins/scripts/deliver.sh' 
             }
         }
-        // stage('Docker') {
-        //     steps {
-        //         script {
-        //         sh 'docker build -t maven-sample .'
-        //         sh 'docker images'
-        //         }
-        //      }
-        //     }
+        stage('Docker') {
+            steps {
+                script {
+                sh 'docker build -t maven-sample .'
+                sh 'docker images'
+                }
+             }
+            }
         // stage('Docker Build') {
         //     steps {
         //         script {
@@ -53,26 +51,7 @@ pipeline {
         //         }
         //     }
         // }
-    
-            
-           
-      stage('Build image') {         
-       
-            app = docker.build("vivans/sample-build")    
-       }
-       stage('Test image') {           
-            app.inside {            
-             
-             sh 'echo "Tests passed"'        
-            }    
-        }     
-        stage('Push image') {
-                                                  docker.withRegistry('https://registry.hub.docker.com', 'dockerhub_id') {            
-       app.push("${env.BUILD_NUMBER}")            
-       app.push("latest")        
-              }    
-           }
-    
+
     }
-    }
+    
 }
