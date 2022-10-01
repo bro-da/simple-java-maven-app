@@ -1,6 +1,6 @@
 pipeline {
     agent any
-    def app 
+    
     
      environment {
         DATE = new Date().format('yy.M')
@@ -9,7 +9,8 @@ pipeline {
     options {
         skipStagesAfterUnstable()
     }
-   
+    node 
+    {def app 
     stages {
          stage('Cloning Git') {
       steps {
@@ -72,5 +73,6 @@ pipeline {
               }    
            }
     
+    }
     }
 }
