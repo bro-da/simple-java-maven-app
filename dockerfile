@@ -4,7 +4,7 @@ RUN mkdir -p $HOME
 WORKDIR $HOME
 ADD pom.xml $HOME
 ADD . $HOME
-RUN mvn clean install
+
 
 FROM openjdk:8-jdk-alpine 
 COPY --from=build /usr/app/target/my-app-1.0-SNAPSHOT.jar /app/runner.jar
