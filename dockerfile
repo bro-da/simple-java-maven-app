@@ -1,4 +1,5 @@
-FROM maven
-RUN apk add --no-cache python2 g++ make
+FROM alpine
+RUN apk add --no-cache python3
+
 WORKDIR /app
-COPY ./*.jar .
+COPY ./ .
