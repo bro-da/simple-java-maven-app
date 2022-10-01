@@ -19,6 +19,12 @@ pipeline {
       }
     }
     stages {
+         stage('Cloning Git') {
+      steps {
+        git([url: 'https://github.com/bro-da/simple-java-maven-app.git'])
+ 
+      }
+    }
         stage('Build') {
             steps {
                 sh 'mvn -B -DskipTests clean package'
