@@ -12,6 +12,12 @@ pipeline {
     options {
         skipStagesAfterUnstable()
     }
+    stage('Cloning Git') {
+      steps {
+        git([url: 'https://github.com/bro-da/simple-java-maven-app.git'])
+ 
+      }
+    }
     stages {
         stage('Build') {
             steps {
