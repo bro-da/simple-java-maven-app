@@ -1,5 +1,6 @@
 pipeline {
     agent any
+    def app 
     
      environment {
         DATE = new Date().format('yy.M')
@@ -51,8 +52,8 @@ pipeline {
         //         }
         //     }
         // }
-    {
-        def app     
+    
+            
            
       stage('Build image') {         
        
@@ -70,6 +71,6 @@ pipeline {
        app.push("latest")        
               }    
            }
-    }
+    
     }
 }
