@@ -56,7 +56,7 @@ pipeline {
             
 			steps {
                 
-				sh 'docker push https://hub.docker.com/repository/docker/vivans/sample-build:$TAG'
+				sh 'docker push vivans/sample-build:$TAG'
 			}
 		}
 	}
