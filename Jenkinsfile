@@ -48,7 +48,7 @@ pipeline {
             steps {
                 script {
                 // sh 'docker rmi maven-sample'
-                sh 'docker build -t vivans/sample-build:${BUILD_NUMBER} .'
+                sh 'docker build -t vivans/sample-build:${TAG} .'
                 
                 sh 'docker images'
                 }
@@ -59,8 +59,8 @@ pipeline {
 			steps {
 //                  sh 'docker push vivans/sample-build:"${BUILD_NUMBER}"'
 //                 sh 'docker tag vivans/sample-build:${BUILD.NUMBER} vivans/sample-build:latest'
-				sh 'docker tag vivans/sample-build:"${BUILD.NUMBER}" vivans/sample-build:latest'
-				sh 'docker push vivans/sample-build:"${BUILD_NUMBER}"'
+				sh 'docker tag vivans/sample-build:${TAG} vivans/sample-build:latest'
+				sh 'docker push vivans/sample-build:${TAG}'
 				sh 'docker push vivans/sample-build:latest'
 				
 			}
